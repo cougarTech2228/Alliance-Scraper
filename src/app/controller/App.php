@@ -40,6 +40,10 @@ class App {
      * @throws Exception
      */
     public function run(array $args) {
+        if (!isset($args[1]) || !isset($args[2])) {
+            throw new Exception("Invalid input.");
+        }
+
         $command = $args[1];
         $param = $args[2];
 
