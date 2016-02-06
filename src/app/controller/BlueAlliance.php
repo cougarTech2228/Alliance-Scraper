@@ -142,6 +142,45 @@ class BlueAlliance {
 
     }
 
+    public function getOPRs($eventKey) {
+        if (!is_string($eventKey)) {
+            throw new Exception("eventKey is not string: " . $eventKey);
+        }
+
+        $request = new HTTP($this->TConfig);
+        $request->setURL(static::uri . '/event/' . $eventKey . '/stats');
+        $request->setHeaders($this->setAPIHeaders());
+        $out = $request->exec();
+
+        if ($out['code'] !== 200) {
+            throw new Exception("Event key stats returned non-200 response code: " . $out['code']);
+        }
+
+        $body = json_decode($out['body'], true);
+
+        if (!is_array($body)) {
+            throw new Exception("getOPRs(...) request body was not array when attempted to be decoded.");
+        }
+
+        if (in_array('oprs', $body) && count($body['oprs']) > 0) {
+            $oprs = array();
+
+            foreach ($body['oprs'] as $team => $opr) {
+                $oprs[$team] = $opr;
+            }
+
+            unset($body);
+            unset($out);
+            unset($request);
+
+            return $oprs;
+        }
+
+        return false;
+
+    }
+
+
     /**
      * Set API Headers
      *
