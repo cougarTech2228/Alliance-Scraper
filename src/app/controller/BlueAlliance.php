@@ -88,6 +88,60 @@ class BlueAlliance {
     }
 
     /**
+     * Get Rankings for Event Key
+     *
+     * Gets the rankings for a specified event key.
+     *
+     * @param string $eventKey
+     * @return array|false
+     * @throws Exception
+     */
+    public function getRankings($eventKey) {
+        if (!is_string($eventKey)) {
+            throw new Exception("eventKey is not string: " . $eventKey);
+        }
+
+        $request = new HTTP($this->TConfig);
+        $request->setURL(static::uri . '/event/' . $eventKey . '/rankings');
+        $request->setHeaders($this->setAPIHeaders());
+        $out = $request->exec();
+
+        if ($out['code'] !== 200) {
+            throw new Exception("Event key rankings returned non-200 response code: " . $out['code']);
+        }
+
+        $body = json_decode($out['body'], true);
+
+        if (!is_array($body)) {
+            throw new Exception("getRankings(...) request body was not array when attempted to be decoded.");
+        }
+
+        if (count($body) > 0) {
+            $rankings = array();
+
+            // Remove the header
+            unset($body[0]);
+
+            array_shift($body);
+
+            foreach ($body as $row) {
+                $rankings[$row['0']] = array(
+                    'team' => $row['1']
+                );
+            }
+
+            unset($body);
+            unset($out);
+            unset($request);
+
+            return $rankings;
+        }
+
+        return false;
+
+    }
+
+    /**
      * Set API Headers
      *
      * Sets the required headers for The Blue Alliance API.
