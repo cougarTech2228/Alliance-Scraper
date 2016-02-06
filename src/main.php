@@ -15,9 +15,17 @@ define('PATH', __DIR__ . DS);
 define('APP', PATH . 'app' . DS);
 
 require APP . 'controller' . DS . 'Exception.php';
-require APP . 'controller' . DS . 'TConifg.php';
+require APP . 'controller' . DS . 'TConfig.php';
 require APP . 'controller' . DS . 'HTTP.php';
 require APP . 'controller' . DS . 'File.php';
 require APP . 'controller' . DS . 'BlueAlliance.php';
 require APP . 'controller' . DS . 'Parse.php';
 require APP . 'controller' . DS . 'Export.php';
+require APP . 'controller' . DS . 'App.php';
+
+try {
+    $app = new App();
+    $app->run($argv);
+} catch (Exception $e) {
+    echo $e->getMessage();
+}
