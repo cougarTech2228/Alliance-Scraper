@@ -67,7 +67,8 @@ class TConfig {
             throw new Exception("Input config key is not string: " . $key);
         }
 
-        if (!in_array($key, $this->config) || $this->config[$key] === null) {
+        // TODO: Validate key exists.
+        if ($this->config[$key] === null) {
             throw new Exception("Config key is not set: " . $key);
         }
 
