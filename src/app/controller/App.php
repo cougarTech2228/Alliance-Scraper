@@ -128,8 +128,6 @@ class App {
         $rankings = $api->getRankings($key);
         $oprs = $api->getOPRs($key);
 
-        var_dump($oprs);
-
         $out = array();
 
         foreach ($rankings as $item) {
