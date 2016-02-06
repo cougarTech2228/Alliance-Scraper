@@ -11,7 +11,7 @@ namespace alliance;
 
 
 define('DS', DIRECTORY_SEPARATOR);
-define('PATH', __DIR__ . DS);
+define('PATH', 'phar://Alliance-Scraper.phar' . DS);
 define('APP', PATH . 'app' . DS);
 
 require APP . 'controller' . DS . 'Exception.php';
