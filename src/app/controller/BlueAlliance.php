@@ -142,6 +142,15 @@ class BlueAlliance {
 
     }
 
+    /**
+     * Get OPRs for Given Event
+     *
+     * Returns array of keys (team) and values (OPR) for the given event.
+     *
+     * @param string $eventKey
+     * @return array|bool
+     * @throws Exception
+     */
     public function getOPRs($eventKey) {
         if (!is_string($eventKey)) {
             throw new Exception("eventKey is not string: " . $eventKey);
