@@ -9,7 +9,7 @@ All data can be exported to CSV.
 
 To run, first build a copy of the code and build it or download the pre-built phar archive.
 
-`php Alliance-Scraper.phar [year | all] [path for export]`
+`php Alliance-Scraper.phar [command] [options...]`
 
 ## Building
 
