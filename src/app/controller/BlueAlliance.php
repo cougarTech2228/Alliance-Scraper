@@ -71,7 +71,8 @@ class BlueAlliance {
             $eventList = array();
 
             foreach ($body as $event) {
-                $eventList[$event['key']] = array(
+                $eventList[] = array(
+                    'key'  => $event['key'],
                     'name' => $event['name'],
                     'type' => $event['event_type_string']
                 );
@@ -125,7 +126,8 @@ class BlueAlliance {
             array_shift($body);
 
             foreach ($body as $row) {
-                $rankings[$row['0']] = array(
+                $rankings[] = array(
+                    'rank' => $row['0'],
                     'team' => $row['1']
                 );
             }
