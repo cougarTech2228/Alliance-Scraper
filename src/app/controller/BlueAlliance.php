@@ -139,7 +139,6 @@ class BlueAlliance {
         }
 
         return false;
-
     }
 
     /**
@@ -186,7 +185,6 @@ class BlueAlliance {
         }
 
         return false;
-
     }
 
 

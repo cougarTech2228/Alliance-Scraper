@@ -87,7 +87,6 @@ class HTTP {
         //$this->validate[] = 'headers';
 
         return true;
-
     }
 
     /**
@@ -129,5 +128,4 @@ class HTTP {
             'headers' => $headers
         );
     }
-
 }

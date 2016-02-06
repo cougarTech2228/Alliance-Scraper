@@ -149,6 +149,5 @@ class App {
         }
 
         return 'No data.';
-
     }
 }
