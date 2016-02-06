@@ -18,3 +18,4 @@ require APP . 'controller' . DS . 'Exception.php';
 require APP . 'controller' . DS . 'TConifg.php';
 require APP . 'controller' . DS . 'HTTP.php';
 require APP . 'controller' . DS . 'File.php';
+require APP . 'controller' . DS . 'BlueAlliance.php';
