@@ -56,7 +56,7 @@ class HTTP {
             throw new Exception("Set URL is not valid: " . $url);
         }
 
-        if (curl_setopt($this->curl, CURLOPT_URL, $url)) {
+        if (!curl_setopt($this->curl, CURLOPT_URL, $url)) {
             throw new Exception("Something weird happened when setting the URL: " . $url);
         }
 
