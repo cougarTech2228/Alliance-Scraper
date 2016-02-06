@@ -15,3 +15,4 @@ define('PATH', __DIR__ . DS);
 define('APP', PATH . 'app' . DS);
 
 require APP . 'controller' . DS . 'Exception.php';
+require APP . 'controller' . DS . 'File.php';
