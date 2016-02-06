@@ -48,6 +48,10 @@ class BlueAlliance {
             throw new Exception("Year is not integer: " . $year);
         }
 
+        if ($year > date('Y') + 1 || $year < 1992) {
+            throw new Exception("Invalid year (not in allowed range).");
+        }
+
         $request = new HTTP($this->TConfig);
         $request->setURL(static::uri . '/events/' . $year);
         $request->setHeaders($this->setAPIHeaders());
