@@ -19,4 +19,5 @@ require APP . 'controller' . DS . 'TConifg.php';
 require APP . 'controller' . DS . 'HTTP.php';
 require APP . 'controller' . DS . 'File.php';
 require APP . 'controller' . DS . 'BlueAlliance.php';
+require APP . 'controller' . DS . 'Parse.php';
 require APP . 'controller' . DS . 'Export.php';
