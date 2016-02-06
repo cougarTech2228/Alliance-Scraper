@@ -42,7 +42,6 @@ class App {
     public function run(array $args) {
         $command = $args[1];
         $param = $args[2];
-        $file = $args[3];
 
         if (count($args) > 4) {
             throw new Exception("Expected 2-3 params, received: " . count($args));
@@ -63,10 +62,10 @@ class App {
 
         echo $out . PHP_EOL;
 
-        if ($file !== null) {
-            echo "Saving to " . $file . PHP_EOL;
+        if (isset($args[3])) {
+            echo "Saving to " . $args[3] . PHP_EOL;
 
-            if (!File::write($file, $out)) {
+            if (!File::write($args[3], $out)) {
                 throw new Exception("File failed to write.");
             }
         }
