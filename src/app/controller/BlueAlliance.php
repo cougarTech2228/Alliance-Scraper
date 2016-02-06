@@ -167,7 +167,8 @@ class BlueAlliance {
         $body = json_decode($out['body'], true);
 
         if (!is_array($body)) {
-            throw new Exception("getOPRs(...) request body was not array when attempted to be decoded.");
+            //throw new Exception("getOPRs(...) request body was not array when attempted to be decoded.");
+            return false;
         }
 
         if (isset($body['oprs']) && count($body['oprs']) > 0) {
