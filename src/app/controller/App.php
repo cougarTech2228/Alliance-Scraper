@@ -130,22 +130,30 @@ class App {
 
         $out = array();
 
-        foreach ($rankings as $item) {
-            $out[] = array(
-                'team' => $item['team'],
-                'rank' => $item['rank'],
-                'opr'  => $oprs[$item['team']]
-            );
-        }
+        if ($rankings !== false) {
+            foreach ($rankings as $item) {
+                if ($oprs !== false) {
+                    $opr = $oprs[$item['team']];
+                } else {
+                    $opr = '-';
+                }
 
-        if ($out !== false) {
-            $header = array(
-                'Team', 'Rank', 'OPR'
-            );
+                $out[] = array(
+                    'team' => $item['team'],
+                    'rank' => $item['rank'],
+                    'opr'  => $opr
+                );
+            }
 
-            $csv = Export::csv($header, $out);
+            if ($out !== false) {
+                $header = array(
+                    'Team', 'Rank', 'OPR'
+                );
 
-            return $csv;
+                $csv = Export::csv($header, $out);
+
+                return $csv;
+            }
         }
 
         return 'No data.';
