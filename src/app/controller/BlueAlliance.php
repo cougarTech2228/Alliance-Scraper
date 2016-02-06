@@ -124,8 +124,6 @@ class BlueAlliance {
             // Remove the header
             unset($body[0]);
 
-            array_shift($body);
-
             foreach ($body as $row) {
                 $rankings[] = array(
                     'rank' => $row['0'],
