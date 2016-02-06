@@ -56,9 +56,10 @@ class File {
             throw new Exception("Input file or data is not string: " . $file . " Data:" . $data);
         }
 
-        if (!is_writable($file)) {
+        // TODO: Fix this.
+/*        if ((file_exists($file) && !is_writable($file)) || (!file_exists($file) && !is_writable(dirname($file)))) {
             return false;
-        }
+        }*/
 
         if (!file_put_contents($file, $data)) {
             throw new Exception("Could not put contents in file: " . $file . " Data: " . $data);
