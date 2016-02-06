@@ -125,11 +125,24 @@ class App {
         }
 
         $api = new BlueAlliance($this->TConfig);
-        $out = $api->getRankings($key);
+        $rankings = $api->getRankings($key);
+        $oprs = $api->getOPRs($key);
+
+        var_dump($oprs);
+
+        $out = array();
+
+        foreach ($rankings as $item) {
+            $out[] = array(
+                'team' => $item['team'],
+                'rank' => $item['rank'],
+                'opr'  => $oprs[$item['team']]
+            );
+        }
 
         if ($out !== false) {
             $header = array(
-                'Rank', 'Team'
+                'Team', 'Rank', 'OPR'
             );
 
             $csv = Export::csv($header, $out);
