@@ -58,7 +58,8 @@ class BlueAlliance {
         $out = $request->exec();
 
         if ($out['code'] !== 200) {
-            throw new Exception("API send non-200 response: " . $out['code'] . " " . $out['headers']);
+            var_dump($out);
+            throw new Exception("API sent non-200 response: " . $out['code'] . " " . $out['headers']);
         }
 
         $body = json_decode($out['body'], true);
@@ -153,11 +154,10 @@ class BlueAlliance {
      */
     private function setAPIHeaders() {
         $team = $this->TConfig->read('id');
-        $url = $this->TConfig->read('url');
 
         // Format ID:Desc:Ver
         $header = array(
-            'X-TBA-App-Id' => $team . ':' . 'Alliance Scrapper made by FRC Team 2228 being used by ' . $url . ':' . 'inf'
+            'X-TBA-App-Id: ' . $team . ':' . 'Alliance_Scrapper_made_by_FRC_Team_2228' . ':' . 'inf'
         );
 
         return $header;
