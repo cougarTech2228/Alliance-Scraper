@@ -26,15 +26,15 @@ class HTTP {
      *
      * Creates CURL object and sets default options.
      *
-     * @param TConfig $config
+     * @param TConfig $TConfig
      */
-    public function __construct(TConfig $config) {
+    public function __construct(TConfig $TConfig) {
         $this->curl = curl_init();
         $this->validate = array();
 
         curl_setopt_array($this->curl, array(
             CURLOPT_USERAGENT      => 'Alliance Scraper made by FRC Team 2228 - PHP CURL',
-            CURLOPT_REFERER        => $config->read('url'),
+            CURLOPT_REFERER        => $TConfig->read('url'),
             CURLOPT_SSL_VERIFYPEER => true,
             CURLOPT_SSL_VERIFYHOST => 2,
             CURLOPT_RETURNTRANSFER => true
