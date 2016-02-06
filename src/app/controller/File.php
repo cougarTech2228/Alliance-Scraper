@@ -32,7 +32,7 @@ class File {
             throw new Exception("Input file is not string: " . $file);
         }
 
-        if (!file_exists($file) || is_readable($file)) {
+        if (!file_exists($file) || !is_readable($file)) {
             return false;
         }
 
