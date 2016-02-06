@@ -71,14 +71,15 @@ class BlueAlliance {
             $eventList = array();
 
             foreach ($body as $event) {
-                $eventList[] = array(
+                $eventList[$event['key']] = array(
                     'name' => $event['name'],
-                    'key'  => $event['key'],
                     'type' => $event['event_type_string']
                 );
             }
 
             unset($body);
+            unset($out);
+            unset($request);
 
             return $eventList;
         }
