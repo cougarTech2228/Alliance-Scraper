@@ -15,7 +15,9 @@ To run, first build a copy of the code and build it or download the pre-built ph
 
 Run the script in `/build` by executing
 
-`php build.php`
+`php build.php [team id]`
+
+Note: The that the team ID is required because The Blue Alliance API requires it for API calls.
 
 ## Requirements
 
