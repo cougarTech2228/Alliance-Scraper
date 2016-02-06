@@ -171,7 +171,7 @@ class BlueAlliance {
             throw new Exception("getOPRs(...) request body was not array when attempted to be decoded.");
         }
 
-        if (in_array('oprs', $body) && count($body['oprs']) > 0) {
+        if (isset($body['oprs']) && count($body['oprs']) > 0) {
             $oprs = array();
 
             foreach ($body['oprs'] as $team => $opr) {
