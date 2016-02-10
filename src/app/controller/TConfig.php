@@ -21,7 +21,7 @@ namespace alliance;
 class TConfig {
     private
         $config,
-        $path = PATH . 'teamid.json';
+        $path;
 
     /**
      * TConfig constructor.
@@ -31,6 +31,7 @@ class TConfig {
      * @throws Exception
      */
     public function __construct() {
+        $this->path = PATH . 'teamid.json';
         $this->reload();
     }
 
