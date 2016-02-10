@@ -20,9 +20,8 @@ namespace alliance;
  */
 class TConfig {
     private
-        $config;
-
-    const path = PATH . 'teamid.json';
+        $config,
+        $path = PATH . 'teamid.json';
 
     /**
      * TConfig constructor.
@@ -44,7 +43,7 @@ class TConfig {
      * @throws Exception
      */
     private function reload() {
-        $this->config = json_decode(File::read(static::path), true);
+        $this->config = json_decode(File::read($this->path), true);
 
         if (!is_array($this->config)) {
             throw new Exception("Decoded team configuration is not an array.");
@@ -92,7 +91,7 @@ class TConfig {
 
         $this->config[$key] = $value;
 
-        if (!File::write(static::path, json_encode($this->config, JSON_PRETTY_PRINT))) {
+        if (!File::write($this->path, json_encode($this->config, JSON_PRETTY_PRINT))) {
             throw new Exception("Failed to write new config to file.");
         }
 
