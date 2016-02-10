@@ -56,6 +56,9 @@ class App {
                 $param = (int)$param;
                 $out = $this->commandYear($param);
                 break;
+            case 'matches':
+                $out = $this->commandMatches($param);
+                break;
             case 'rankings':
                 $out = $this->commandRankings($param);
                 break;
@@ -148,6 +151,46 @@ class App {
             if ($out !== false) {
                 $header = array(
                     'Team', 'Rank', 'OPR'
+                );
+
+                $csv = Export::csv($header, $out);
+
+                return $csv;
+            }
+        }
+
+        return 'No data.';
+    }
+
+    private function commandMatches($key) {
+        if (!is_string($key)) {
+            throw new Exception("Event key is not string.");
+        }
+
+        $api = new BlueAlliance($this->TConfig);
+        $matches = $api->getMatches($key);
+
+        $out = array();
+
+        if ($matches !== false) {
+            foreach ($matches as $match => $data) {
+                $out[] = array(
+                    'key'   => $match,
+                    'match' => $data['matchNumber'],
+                    'set'   => $data['setNumber'],
+                    'red1'  => $data['red'][0],
+                    'red2'  => $data['red'][1],
+                    'red3'  => $data['red'][2],
+                    'blue1' => $data['blue'][0],
+                    'blue2' => $data['blue'][1],
+                    'blue3' => $data['blue'][2],
+
+                );
+            }
+
+            if ($out !== false) {
+                $header = array(
+                    'Match Key', 'Match Number', 'Set Number', 'Red 1', 'Red 2', 'Red 3', 'Blue 1', 'Blue 2', 'Blue 3'
                 );
 
                 $csv = Export::csv($header, $out);
