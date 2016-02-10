@@ -171,7 +171,7 @@ class BlueAlliance {
             return false;
         }
 
-        if (isset($body['oprs']) && count($body['oprs']) > 0) {
+        if (array_key_exists('oprs', $body) && count($body['oprs']) > 0) {
             $oprs = array();
 
             foreach ($body['oprs'] as $team => $opr) {
