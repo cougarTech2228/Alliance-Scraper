@@ -188,6 +188,59 @@ class BlueAlliance {
         return false;
     }
 
+    /**
+     * Get Matches and Alliances
+     *
+     * Returns an array of matches and the alliances for each match at an event.
+     *
+     * @param string $eventKey
+     * @return array|false
+     * @throws Exception
+     */
+    public function getMatches($eventKey) {
+        if (!is_string($eventKey)) {
+            throw new Exception("eventKey is not string: " . $eventKey);
+        }
+
+        $request = new HTTP($this->TConfig);
+        $request->setURL(static::uri . '/event/' . $eventKey . '/matches');
+        $request->setHeaders($this->setAPIHeaders());
+        $out = $request->exec();
+
+        if ($out['code'] !== 200) {
+            throw new Exception("Event key matches returned non-200 response code: " . $out['code']);
+        }
+
+        $body = json_decode($out['body'], true);
+
+        if (!is_array($body)) {
+            //throw new Exception("getMatches(...) request body was not array when attempted to be decoded.");
+            return false;
+        }
+
+        if (count($body) > 0) {
+
+            $matches = array();
+
+            foreach ($body as $match => $data) {
+                $matches[$match] = array(
+                    'matchNumber' => $data['match_number'],
+                    'setNumber'   => $data['set_number'],
+                    'red'         => $data['alliances']['red']['teams'],
+                    'blue'        => $data['alliances']['blue']['teams']
+                );
+            }
+
+            unset($body);
+            unset($out);
+            unset($request);
+
+            return $matches;
+        }
+
+        return false;
+
+    }
 
     /**
      * Set API Headers
