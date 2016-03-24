@@ -20,6 +20,7 @@ php Alliance-Scraper.phar year 2015
 # Save rankings from an event to a file
 php Alliance-Scraper.phar rankings 2015onto 2016onto.csv
 
+
 ```
 
 ## Building
